@@ -5,11 +5,11 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.Timer;
 
-public class Timer extends javax.swing.JFrame {
+public class Temporizador extends javax.swing.JFrame {
     JLabel EtiquetaTiempo;
     JButton BStart,BPause,BStop;
     
-    public Timer()){
+    public Temporizador(){
        initComponents(); 
        setLocationRelativeTo(null);
        t=new Timer(1000,acciones);
@@ -43,8 +43,6 @@ public class Timer extends javax.swing.JFrame {
             EtiquetaTiempo.setText(tiempo);
             
        }
-
-       
 
     private void initComponents() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

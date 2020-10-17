@@ -7,20 +7,22 @@ import marytts.exceptions.MaryConfigurationException;
 import marytts.exceptions.SynthesisException;
 import marytts.util.data.audio.AudioPlayer;
 
-public class Mary {
+public class Speaker {
     private MaryInterface marytts;
     private AudioPlayer ap;
+    private String nombre_voz;
     
-    public Mary(String voiceName)
-    {
-        try
-        {
+    public Speaker(){
+        
+        nombre_voz="cmu-rms-hsmm";
+        
+        try{
             marytts = new LocalMaryInterface();
-            marytts.setVoice(voiceName);
+            marytts.setVoice(nombre_voz);
             ap = new AudioPlayer();
+            
         }
-        catch (MaryConfigurationException ex)
-        {
+        catch (MaryConfigurationException ex){
             ex.printStackTrace();
         }
     }
@@ -38,11 +40,8 @@ public class Mary {
         {
             System.err.println("Error saying phrase.");
         }
+        
     }
     
-    
-    public static void main(String[] args) {
-       Mary voz= new Mary("cmu-rms-hsmm");
-       voz.say("what name is given to the act of putting drillpipe into the wellbore when the blowout preventers are closed and pressure is contained in the well?");
-       
+}   
 
