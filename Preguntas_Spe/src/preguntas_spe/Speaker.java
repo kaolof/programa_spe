@@ -27,8 +27,7 @@ public class Speaker {
         }
     }
 
-    public void say(String input)
-    {
+    public void say(String input){
         try
         {
             AudioInputStream audio = marytts.generateAudio(input);
