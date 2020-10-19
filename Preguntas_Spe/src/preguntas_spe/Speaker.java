@@ -31,7 +31,6 @@ public class Speaker {
         try
         {
             AudioInputStream audio = marytts.generateAudio(input);
-
             ap.setAudio(audio);
             ap.start();
         }

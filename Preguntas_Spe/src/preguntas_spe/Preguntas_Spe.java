@@ -1,12 +1,12 @@
 
 package preguntas_spe;
 
-import Interfaz.Start;
+import Interfaz.Bienvenidos;
 
 public class Preguntas_Spe {
 
     public static void main(String[] args) {
-        Start frame= new Start();
+        Bienvenidos frame= new Bienvenidos();
         frame.setVisible(true);
     }
     

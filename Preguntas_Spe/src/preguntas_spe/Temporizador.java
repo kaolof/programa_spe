@@ -1,6 +1,9 @@
 
 package preguntas_spe;
-import java.awt.event.ActionEvent;
+
+import java.util.Timer;
+
+/*import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.Timer;
@@ -47,5 +50,60 @@ public class Temporizador extends javax.swing.JFrame {
     private void initComponents() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-}
-   
+}*/
+
+
+public class Temporizador {
+    
+    private int minutos, segundos;
+    private String tiempo;
+    private Timer t;
+    //private BStart,BPause,BStop;
+    
+    public Temporizador(){ 
+       t = new Timer();
+       minutos = 0;
+       segundos = 0;
+       tiempo = "";
+    }
+    
+    private void reiniciarTiempo() { 
+        
+    }
+    
+    private void detenerTiempo() { 
+        
+    }
+     
+    private void iniciarTiempo() {   
+        
+    }
+    
+    
+     private String getTiempo() { 
+        return tiempo;       
+    }
+    
+    
+    
+    
+    /*
+    public void actionPerformed(ActionEvent ae) {
+        while(s>0){
+          if(s==0){
+             m--;
+          }
+          s=59;
+          s--;
+          ActualizarJLabel();
+      }
+   }
+ 
+
+ private void ActualizarJLabel(){
+      String tiempo= "0"+m+":"+(s<=9?"0":"")+s;
+      EtiquetaTiempo.setText(tiempo);
+
+ } */
+
+ }

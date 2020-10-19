@@ -24,29 +24,29 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="330" max="-2" attributes="0"/>
-              <Component id="Start_button" min="-2" pref="104" max="-2" attributes="0"/>
-              <EmptySpace pref="366" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
+              <Component id="jbRegresar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="167" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="221" max="-2" attributes="0"/>
-              <Component id="Start_button" min="-2" pref="35" max="-2" attributes="0"/>
-              <EmptySpace pref="244" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="238" max="32767" attributes="0"/>
+              <Component id="jbRegresar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="Start_button">
+    <Component class="javax.swing.JButton" name="jbRegresar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="START"/>
+        <Property name="text" type="java.lang.String" value="Regresar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Start_buttonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbRegresarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
