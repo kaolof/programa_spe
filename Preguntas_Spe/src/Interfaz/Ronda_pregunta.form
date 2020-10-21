@@ -27,16 +27,20 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="297" max="-2" attributes="0"/>
-                      <Component id="Registrar_pregunta" min="-2" pref="184" max="-2" attributes="0"/>
+                      <Component id="bRegistrarPregunta" min="-2" pref="184" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Start" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jScrollPane1" min="-2" pref="486" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                              <Component id="Responder" min="-2" pref="159" max="-2" attributes="0"/>
+                              <Component id="bResponder" min="-2" pref="159" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="bStart" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="lRespuesta" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lPrueba" alignment="0" pref="258" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -49,14 +53,18 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
-              <Component id="Start" min="-2" max="-2" attributes="0"/>
+              <Component id="bStart" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" min="-2" pref="149" max="-2" attributes="0"/>
-                  <Component id="Responder" min="-2" pref="51" max="-2" attributes="0"/>
+                  <Component id="bResponder" min="-2" pref="51" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="130" max="32767" attributes="0"/>
-              <Component id="Registrar_pregunta" min="-2" pref="41" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="lPrueba" min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lRespuesta" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="65" max="32767" attributes="0"/>
+              <Component id="bRegistrarPregunta" min="-2" pref="41" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -70,7 +78,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
+        <Component class="javax.swing.JTextArea" name="taRespuesta">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
@@ -78,29 +86,39 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="Responder">
+    <Component class="javax.swing.JButton" name="bResponder">
       <Properties>
         <Property name="text" type="java.lang.String" value="RESPONDER"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ResponderActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bResponderActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Registrar_pregunta">
+    <Component class="javax.swing.JButton" name="bRegistrarPregunta">
       <Properties>
         <Property name="text" type="java.lang.String" value="REGISTRAR PREGUNTA"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Registrar_preguntaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bRegistrarPreguntaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Start">
+    <Component class="javax.swing.JButton" name="bStart">
       <Properties>
         <Property name="text" type="java.lang.String" value="START"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="StartActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bStartActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lPrueba">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tiene 5 segundos para presionar el bot&#xf3;n responder"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lRespuesta">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tiene 15 segundos para responder"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

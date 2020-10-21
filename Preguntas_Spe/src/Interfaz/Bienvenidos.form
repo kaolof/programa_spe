@@ -23,24 +23,24 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="157" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jbRegistrarme" max="32767" attributes="0"/>
-                  <Component id="jbAcercaDe" min="-2" pref="91" max="-2" attributes="0"/>
+                  <Component id="jbAcercaDe" max="32767" attributes="0"/>
+                  <Component id="jbRegistrarme" min="-2" pref="129" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
+              <EmptySpace pref="142" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="185" max="32767" attributes="0"/>
+              <EmptySpace pref="188" max="32767" attributes="0"/>
               <Component id="jbRegistrarme" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jbAcercaDe" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

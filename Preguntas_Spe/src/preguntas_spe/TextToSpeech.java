@@ -55,7 +55,7 @@ public class TextToSpeech {
 	 *            <b>True</b> The current Thread calling this method will wait(blocked) until the Thread which is playing the Speech finish <br>
 	 *            <b>False</b> The current Thread calling this method will continue freely after calling this method
 	 */
-	public void speak(String text , float gainValue , boolean daemon , boolean join) {
+	public int speak(String text , float gainValue , boolean daemon , boolean join) {
 		
 		// Stop the previous player
 		stopSpeaking();
@@ -70,16 +70,21 @@ public class TextToSpeech {
 			tts.setDaemon(daemon);
 			tts.start();
 			if (join)
-				tts.join();
+				tts.join();                      
 			
 		} catch (SynthesisException ex) {
 			Logger.getLogger(getClass().getName()).log(Level.WARNING, "Error saying phrase.", ex);
+                        return 0;
 		} catch (IOException ex) {
 			Logger.getLogger(getClass().getName()).log(Level.WARNING, "IO Exception", ex);
+                        return 0;
 		} catch (InterruptedException ex) {
 			Logger.getLogger(getClass().getName()).log(Level.WARNING, "Interrupted ", ex);
 			tts.interrupt();
+                        return 0;
 		}
+                
+                return 1;
 	}
 	
 	/**
@@ -89,7 +94,7 @@ public class TextToSpeech {
 		// Stop the previous player
 		if (tts != null)
 			tts.cancel();
-	}
+        }
 	
 	//----------------------GETTERS---------------------------------------------------//
 	
