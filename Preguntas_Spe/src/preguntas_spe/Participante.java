@@ -5,8 +5,13 @@ public class Participante {
     
     private String nombre, apellido;
     private Respuestas respuestas_participante;
-
+    
+    
     Participante(){}
+
+    public Participante(String nombre, String apellido) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     public String getNombre() {
         return nombre;

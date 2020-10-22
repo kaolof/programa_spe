@@ -39,8 +39,8 @@
                           </Group>
                           <Component id="bStart" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="lRespuesta" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lPrueba" alignment="0" pref="258" max="32767" attributes="0"/>
+                              <Component id="lPrueba15" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lPrueba5" alignment="0" pref="258" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -60,9 +60,9 @@
                   <Component id="bResponder" min="-2" pref="51" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="lPrueba" min="-2" pref="18" max="-2" attributes="0"/>
+              <Component id="lPrueba5" min="-2" pref="18" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lRespuesta" min="-2" max="-2" attributes="0"/>
+              <Component id="lPrueba15" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="65" max="32767" attributes="0"/>
               <Component id="bRegistrarPregunta" min="-2" pref="41" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
@@ -110,12 +110,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bStartActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lPrueba">
+    <Component class="javax.swing.JLabel" name="lPrueba5">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tiene 5 segundos para presionar el bot&#xf3;n responder"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lRespuesta">
+    <Component class="javax.swing.JLabel" name="lPrueba15">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tiene 15 segundos para responder"/>
       </Properties>

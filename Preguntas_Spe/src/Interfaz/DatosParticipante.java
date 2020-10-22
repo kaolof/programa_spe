@@ -2,8 +2,11 @@ package Interfaz;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import preguntas_spe.Participante;
 
 public class DatosParticipante extends javax.swing.JFrame {
+    
+    private Participante p;
 
     public DatosParticipante() {
         initComponents();
@@ -79,8 +82,8 @@ public class DatosParticipante extends javax.swing.JFrame {
         validar(tfNombre);
         nombre = tfNombre.getText();
         validar(tfApellido);
-        apellido = tfApellido.getText();     
-        
+        apellido = tfApellido.getText();
+            
         
         Ronda_pregunta a = new Ronda_pregunta();
         a.setVisible(true);
