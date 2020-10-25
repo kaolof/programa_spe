@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 
 public class Ronda_pregunta extends javax.swing.JFrame {
 
-    private String[] preguntas={
+    /*private String[] preguntas={
         "A geologic time period from 290 to 320 million years ago",
         "This is an instrument used to measure viscosity and gel strength of drilling mud. The direct-indicating viscometer is a rotational cylinder and bob instrument.",
         "The irregular movement of a logging tool up a well due to it being stuck at some point and then being released is called how?",
@@ -21,8 +21,9 @@ public class Ronda_pregunta extends javax.swing.JFrame {
         "This is a type of water-base mud that is saturated with Ca(OH)2 and has excess, undissolved lime solids maintained in reserve",
         "Skin effect with a magnitude that depends on the flow rate of the wellbore fluid.",
         "the percentage of void space within rock that can contain fluids is known as what?",
-        "the pumping of acid into the wellbore to remove near-well formation damage and other substances"};
-   
+        "the pumping of acid into the wellbore to remove near-well formation damage and other substances"}; */
+    
+    private String[] preguntas;   
     private int minuto=10, segundos=5, segundos15=15, contPreguntas=0;
     TextToSpeech tts ;
     private Timer t5, t15;
@@ -30,15 +31,16 @@ public class Ronda_pregunta extends javax.swing.JFrame {
     long TInicio, TFin;
     float tiempo;
         
-    
-    public Ronda_pregunta() {
+    //Recibe el arreglo de preguntas
+    public Ronda_pregunta(String[] a) {
         initComponents();
         bRegistrarPregunta.setEnabled(false);
         taRespuesta.setEnabled(false);
         bResponder.setEnabled(false);
         registro = new ManejoArchivos();
         t5 =new Timer(1000,acciones);
-        t15 = new Timer(1000, acciones15);
+        t15 = new Timer(1000, acciones15);        
+        preguntas = a; //Le asingo el arreglo de preguntas que mande desde DatosParticipante 
         
     }
     
@@ -219,7 +221,7 @@ public class Ronda_pregunta extends javax.swing.JFrame {
     private void bRegistrarPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegistrarPreguntaActionPerformed
        String respuesta = "";
        respuesta = taRespuesta.getText(); //VALIDAR SI ESTA VACIO 
-       registro.escribir(respuesta);
+       registro.escribirArchivo(respuesta);
        //taRespuesta.setText(""); Para limpiar la caja despues de guardar la respuesta
        deshabilitar();
        t15.stop();

@@ -1,6 +1,8 @@
 // nombre apellido, respuestas[], set and get nombre, set and get apellido, get, respuestas
 package preguntas_spe;
 
+
+
 public class Participante {
     
     private String nombre, apellido;
@@ -10,7 +12,10 @@ public class Participante {
     Participante(){}
 
     public Participante(String nombre, String apellido) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.nombre = nombre;
+        this.apellido = apellido;
+        respuestas_participante = new Respuestas();
+ 
     }
 
     public String getNombre() {
