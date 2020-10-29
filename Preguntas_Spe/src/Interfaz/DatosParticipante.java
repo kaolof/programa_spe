@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import archivos.ManejoArchivos;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import preguntas_spe.Participante;
@@ -14,7 +15,8 @@ public class DatosParticipante extends javax.swing.JFrame {
     
     private Participante p;
     int n;
-    String ruta_archivo, preguntas[];
+    String ruta_archivo;
+    ArrayList <String> preguntas;
 
     public DatosParticipante() {
         initComponents();       
@@ -98,7 +100,6 @@ public class DatosParticipante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbComenzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbComenzarActionPerformed
-
         String nombre = "", apellido = "";
         validar(tfNombre);
         nombre = tfNombre.getText();
@@ -117,10 +118,8 @@ public class DatosParticipante extends javax.swing.JFrame {
         if(archivo != null){
             ruta_archivo=archivo.getAbsolutePath();
         }
-        
-        //Probar esta excepcion porque ya las maneje dentro del metodo
         try {
-            preguntas = ManejoArchivos.leerArchivo(ruta_archivo); //leo el archivo y me devuelve el arreglo
+            preguntas = ManejoArchivos.leerArchivo(ruta_archivo); 
                   
         } catch (IOException ex) {
             Logger.getLogger(DatosParticipante.class.getName()).log(Level.SEVERE, null, ex);

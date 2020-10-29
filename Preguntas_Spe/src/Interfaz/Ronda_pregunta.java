@@ -7,56 +7,51 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import preguntas_spe.TextToSpeech;
 import archivos.ManejoArchivos;
+import java.util.ArrayList;
 import javax.swing.JLabel;
+import preguntas_spe.Respuesta;
+import preguntas_spe.Respuestas;
 
 public class Ronda_pregunta extends javax.swing.JFrame {
 
-    /*private String[] preguntas={
-        "A geologic time period from 290 to 320 million years ago",
-        "This is an instrument used to measure viscosity and gel strength of drilling mud. The direct-indicating viscometer is a rotational cylinder and bob instrument.",
-        "The irregular movement of a logging tool up a well due to it being stuck at some point and then being released is called how?",
-        "What is the density of water in pounds per galon?",
-        "This is the name of a tubular placed at the bottom of the subsurface sucker-rod pump and inside the gas anchor to drive the formation fluid with little or no gas into the pump",
-        "The treatment of a reservoir formation with a stimulation fluid containing a reactive acid.",
-        "This is a type of water-base mud that is saturated with Ca(OH)2 and has excess, undissolved lime solids maintained in reserve",
-        "Skin effect with a magnitude that depends on the flow rate of the wellbore fluid.",
-        "the percentage of void space within rock that can contain fluids is known as what?",
-        "the pumping of acid into the wellbore to remove near-well formation damage and other substances"}; */
     
-    private String[] preguntas;   
+    
+    private ArrayList<String> preguntas;
     private int minuto=10, segundos=5, segundos15=15, contPreguntas=0;
-    TextToSpeech tts ;
+    TextToSpeech tts;
     private Timer t5, t15;
     private ManejoArchivos registro;
+    private Respuestas respuestas;
     long TInicio, TFin;
     float tiempo;
         
     //Recibe el arreglo de preguntas
-    public Ronda_pregunta(String[] a) {
+    public Ronda_pregunta(ArrayList<String> a) {
         initComponents();
         bRegistrarPregunta.setEnabled(false);
         taRespuesta.setEnabled(false);
-        bResponder.setEnabled(false);
+        
         registro = new ManejoArchivos();
         t5 =new Timer(1000,acciones);
         t15 = new Timer(1000, acciones15);        
-        preguntas = a; //Le asingo el arreglo de preguntas que mande desde DatosParticipante 
-        
+        preguntas = a;
+        respuestas = new Respuestas();
     }
     
     
     public void Partida(){
         tts = new TextToSpeech();
-        if (contPreguntas < preguntas.length) {
-            if(tts.speak(preguntas[contPreguntas], 1.0f, false, true) == 1) {
-                bResponder.setEnabled(true); //Aquí se puede actualizar los segundos
+        if (contPreguntas < preguntas.size()) {
+            if(tts.speak(preguntas.get(contPreguntas), 1.0f, false, true) == 1) {                
                 t5.start();
                 TInicio = System.currentTimeMillis();
             } else { 
-            JOptionPane.showMessageDialog(null, "¡Hubo un error al cargar las preguntas!");
+                System.out.print(contPreguntas);
+                JOptionPane.showMessageDialog(null, "¡Hubo un error al cargar la preguntas!");
         }
 
         } else {
+            registro.archivoCifrado(respuestas);
             JOptionPane.showMessageDialog(null, "¡La ronda ha terminado!");
         }
    
@@ -85,7 +80,7 @@ public class Ronda_pregunta extends javax.swing.JFrame {
 
     public ActionListener acciones15 =new ActionListener(){
          @Override
-         public void actionPerformed(ActionEvent ae) {  //lRespuesta.setText("Tiene " + segundos15 +" segundos para responder");
+         public void actionPerformed(ActionEvent ae) { 
             segundos15--;
             lPrueba15.setText("Tiene " + segundos15 +" segundos para responder");            
             if (segundos15 == 0) {  
@@ -199,19 +194,20 @@ public class Ronda_pregunta extends javax.swing.JFrame {
     //Funciones para habilitar y desahabilitar la caja de texto y registrar respuesta
     public void deshabilitar() { 
         bRegistrarPregunta.setEnabled(false);
-        taRespuesta.setEnabled(false);       
+        taRespuesta.setEnabled(false); 
+        bResponder.setEnabled(true);
     }
     
     public void habilitar() { 
         bRegistrarPregunta.setEnabled(true);
-        taRespuesta.setEnabled(true);       
+        taRespuesta.setEnabled(true);
+        bResponder.setEnabled(false);
     }
 
     
     private void bResponderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bResponderActionPerformed
         habilitar();
-        bResponder.setEnabled(false);
-        //Se reinicia el de 5s y comienza el de 15 hasta que se registre la pregunta 
+        //bResponder.setEnabled(false); //Ponerlo en habilitar 
         t5.stop();
         segundos = 5;
         ActualizarJLabel(0, lPrueba5);
@@ -219,14 +215,16 @@ public class Ronda_pregunta extends javax.swing.JFrame {
     }//GEN-LAST:event_bResponderActionPerformed
 
     private void bRegistrarPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegistrarPreguntaActionPerformed
-       String respuesta = "";
-       respuesta = taRespuesta.getText(); //VALIDAR SI ESTA VACIO 
-       registro.escribirArchivo(respuesta);
-       //taRespuesta.setText(""); Para limpiar la caja despues de guardar la respuesta
+       Respuesta respuesta;
+       String s = taRespuesta.getText(); //VALIDAR SI ESTA VACÍO
+       int tiempoRespuesta = 0;
+       respuesta = new Respuesta(s,tiempoRespuesta);
+       respuestas.agregarRespuesta(respuesta);
+       taRespuesta.setText(" ");
        deshabilitar();
+       //bResponder.setEnabled(true); //Ponerlo en deshabilitar 
        t15.stop();
        segundos15 = 15;
-       //ActualizarJLabel(0, lPrueba15);
        contPreguntas++;
        Partida();
        

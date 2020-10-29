@@ -3,48 +3,28 @@ package preguntas_spe;
 
 import java.util.ArrayList;
 
-public class Respuestas {
-   //private Respuesta respuesta[];
-   private ArrayList<String> respuestas;    
-   public static int cont;
-       
-   Respuestas(){
-       respuestas = new ArrayList<String>(); 
-       cont=0; 
-       //respuesta = new Respuesta[n];   
-   }
-
+public class Respuestas {   
     
-   /*
-   void agregarRespuesta(Respuesta r){
-       	if (cont < respuesta.length){
-	    	respuesta[cont] = r;
-		    cont++;
-        }       
-   }
+    private ArrayList<Respuesta> respuestas;    
 
-    public Respuesta[] getRespuesta() {
-        return respuesta;
-    }*/
-   
-   void agregarRespuestas(String r) {
-       respuestas.add(r);       
-   }
-   
-   
-   void listarRespuestas() {       
-       int n = respuestas.size();
-       for (int i = 0; i < n; i++) {
-           respuestas.get(i);
-       }        
-   }
-
-    public ArrayList<String> getRespuestas() {
-        return respuestas;
+    public Respuestas(){
+        respuestas = new ArrayList<>(); 
     }
 
-   
+    public void agregarRespuesta(Respuesta r) {
+        respuestas.add(r);       
+    }
 
-  
+
+    private void listarRespuestas() {       
+        int n = respuestas.size();
+        for (int i = 0; i < n; i++) {
+            respuestas.get(i);
+        }        
+    }
+
+    public ArrayList<Respuesta> getRespuestas() {
+        return respuestas;
+    }
    
 }

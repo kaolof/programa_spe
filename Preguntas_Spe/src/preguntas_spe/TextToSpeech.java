@@ -55,7 +55,7 @@ public class TextToSpeech {
 	 *            <b>True</b> The current Thread calling this method will wait(blocked) until the Thread which is playing the Speech finish <br>
 	 *            <b>False</b> The current Thread calling this method will continue freely after calling this method
 	 */
-	public int speak(String text , float gainValue , boolean daemon , boolean join) {
+	public int speak(String text , float gainValue , boolean daemon , boolean join) { //Mandarle el action listener de boton
 		
 		// Stop the previous player
 		stopSpeaking();
