@@ -1,5 +1,6 @@
 
 package preguntas_spe;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
@@ -18,6 +19,7 @@ import marytts.modules.synthesis.Voice;
 import marytts.signalproc.effects.AudioEffect;
 import marytts.signalproc.effects.AudioEffects;
 
+
 /**
  * @author GOXR3PLUS
  *
@@ -25,12 +27,15 @@ import marytts.signalproc.effects.AudioEffects;
 public class TextToSpeech {
 	
 	private AudioPlayer tts;
+        //private AudioStream audio;
+
+   
 	private MaryInterface marytts;
 	
 	/**
 	 * Constructor
 	 */
-	public TextToSpeech() {
+	public TextToSpeech(ActionListener e) {
 		try {
 			marytts = new LocalMaryInterface();
 			
@@ -114,6 +119,9 @@ public class TextToSpeech {
 		return marytts;
 	}
 	
+        public AudioPlayer getTts() {
+                return tts;
+        }
 	/**
 	 * Return a list of available audio effects for MaryTTS
 	 * 

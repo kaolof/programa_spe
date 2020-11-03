@@ -13,7 +13,6 @@ import preguntas_spe.Respuestas;
 
 public class ManejoArchivos {
 
-
     private static File archivo;
     private FileWriter escribir;
     private PrintWriter linea;
@@ -72,8 +71,8 @@ public class ManejoArchivos {
         return preguntas;         
    } 
     
-    //Para cifrar el arreglo de respuestas y generar el archivo
-    public void archivoCifrado(Respuestas r) {
+    //Para cifrar el arreglo de respuestas y generar el archivo mandarle el participante
+    public void archivoCifrado(Respuestas r) { 
         int respuestasSize = r.getRespuestas().size(), i = 0;
         String cadena, cadenaCifrada; 
         

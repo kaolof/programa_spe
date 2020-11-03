@@ -14,12 +14,11 @@ import preguntas_spe.Participante;
 public class DatosParticipante extends javax.swing.JFrame {
     
     private Participante p;
-    int n;
     String ruta_archivo;
     ArrayList <String> preguntas;
 
     public DatosParticipante() {
-        initComponents();       
+        initComponents();      
     }
 
   
@@ -104,8 +103,10 @@ public class DatosParticipante extends javax.swing.JFrame {
         validar(tfNombre);
         nombre = tfNombre.getText();
         validar(tfApellido);
-        apellido = tfApellido.getText(); 
-        Ronda_pregunta a = new Ronda_pregunta(preguntas); //Se le manda el arreglo de preguntas a la clase ronda pregunta
+        apellido = tfApellido.getText();
+        p = new Participante(nombre,apellido);
+        
+        Ronda_pregunta a = new Ronda_pregunta(preguntas, p);
         a.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbComenzarActionPerformed
@@ -129,8 +130,8 @@ public class DatosParticipante extends javax.swing.JFrame {
 
     private void validar(JTextField tf) {
         if (tf.getText().isEmpty()) {
-           JOptionPane.showMessageDialog(null, "El campo no puede esta vacío");
-        }              
+           JOptionPane.showMessageDialog(null, "El campo no puede esta vacío");  
+        }             
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -9,8 +9,6 @@ public class Participante {
     private Respuestas respuestas_participante;
     
     
-    Participante(){}
-
     public Participante(String nombre, String apellido) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -34,7 +32,8 @@ public class Participante {
         this.apellido = apellido;
     }
 
-    public Respuestas getRespuestas_participante() {
+    //Revisar si necesito tenerlo dos veces
+    public Respuestas getRespuestasP () {
         return respuestas_participante;
     }
       

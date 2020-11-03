@@ -7,52 +7,58 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import preguntas_spe.TextToSpeech;
 import archivos.ManejoArchivos;
+import com.sun.glass.events.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JLabel;
+import preguntas_spe.Participante;
 import preguntas_spe.Respuesta;
-import preguntas_spe.Respuestas;
 
 public class Ronda_pregunta extends javax.swing.JFrame {
 
-    
-    
+    private Participante p;
     private ArrayList<String> preguntas;
     private int minuto=10, segundos=5, segundos15=15, contPreguntas=0;
     TextToSpeech tts;
     private Timer t5, t15;
     private ManejoArchivos registro;
-    private Respuestas respuestas;
+    //private Respuestas respuestas;
     long TInicio, TFin;
     float tiempo;
         
-    //Recibe el arreglo de preguntas
-    public Ronda_pregunta(ArrayList<String> a) {
+    
+    public Ronda_pregunta(ArrayList<String> a, Participante p) {
         initComponents();
+        //this.getRootPane().setDefaultButton(bResponder); //funciona pero no interrumpe la voz, puede servir para Registrar
         bRegistrarPregunta.setEnabled(false);
         taRespuesta.setEnabled(false);
-        
+      
         registro = new ManejoArchivos();
-        t5 =new Timer(1000,acciones);
+        t5 = new Timer(1000,acciones);
         t15 = new Timer(1000, acciones15);        
         preguntas = a;
-        respuestas = new Respuestas();
+        this.p = p;
     }
     
     
     public void Partida(){
-        tts = new TextToSpeech();
+        tts = new TextToSpeech(detenerVoz);
         if (contPreguntas < preguntas.size()) {
             if(tts.speak(preguntas.get(contPreguntas), 1.0f, false, true) == 1) {                
                 t5.start();
                 TInicio = System.currentTimeMillis();
-            } else { 
-                System.out.print(contPreguntas);
+            } else {                 
                 JOptionPane.showMessageDialog(null, "¡Hubo un error al cargar la preguntas!");
         }
 
         } else {
-            registro.archivoCifrado(respuestas);
-            JOptionPane.showMessageDialog(null, "¡La ronda ha terminado!");
+            //registro.archivoCifrado(respuestas); Enviarlo a la otra ventana
+            //registro.archivoCifrado(p.getRespuestasP());
+            //int op = JOptionPane.showConfirmDialog(null, "¡La ronda a terminado!", "",JOptionPane.YES_NO_OPTION);
+            int op = JOptionPane.showConfirmDialog(null, "¡La ronda a terminado!"); //CAMBIARLO A SHOWOPTION
+            if (op == 0) {
+                guardarRespuestaFrame(p);
+            }
+            //JOptionPane.showMessageDialog(null, "¡La ronda ha terminado!");
         }
    
     }
@@ -93,8 +99,21 @@ public class Ronda_pregunta extends javax.swing.JFrame {
             } 
         }
    };   
+    
+    //Detener voz cuando se presiona el boton responder antes 
+   @SuppressWarnings("Unchecked")
+    public ActionListener detenerVoz =new ActionListener(){
+         @Override
+         public void actionPerformed(ActionEvent ae) {     
+            tts.stopSpeaking();
+        }
+   };   
                
-        
+   public void guardarRespuestaFrame(Participante p) {        
+        Guardar_respuestas a = new Guardar_respuestas(p);
+        a.setVisible(true);
+        this.dispose();       
+   }    
     
     //Ponerle un formato para que sirva para todas
     public void ActualizarJLabel(int s, JLabel jl){
@@ -128,11 +147,21 @@ public class Ronda_pregunta extends javax.swing.JFrame {
                 bResponderActionPerformed(evt);
             }
         });
+        bResponder.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                bResponderKeyPressed(evt);
+            }
+        });
 
         bRegistrarPregunta.setText("REGISTRAR PREGUNTA");
         bRegistrarPregunta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bRegistrarPreguntaActionPerformed(evt);
+            }
+        });
+        bRegistrarPregunta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                bRegistrarPreguntaKeyPressed(evt);
             }
         });
 
@@ -209,6 +238,7 @@ public class Ronda_pregunta extends javax.swing.JFrame {
         habilitar();
         //bResponder.setEnabled(false); //Ponerlo en habilitar 
         t5.stop();
+        tts.stopSpeaking();
         segundos = 5;
         ActualizarJLabel(0, lPrueba5);
         t15.start();        
@@ -219,7 +249,8 @@ public class Ronda_pregunta extends javax.swing.JFrame {
        String s = taRespuesta.getText(); //VALIDAR SI ESTA VACÍO
        int tiempoRespuesta = 0;
        respuesta = new Respuesta(s,tiempoRespuesta);
-       respuestas.agregarRespuesta(respuesta);
+       //respuestas.agregarRespuesta(respuesta);
+       p.getRespuestasP().agregarRespuesta(respuesta);
        taRespuesta.setText(" ");
        deshabilitar();
        //bResponder.setEnabled(true); //Ponerlo en deshabilitar 
@@ -235,6 +266,32 @@ public class Ronda_pregunta extends javax.swing.JFrame {
        Partida();      
        bStart.setEnabled(false);
     }//GEN-LAST:event_bStartActionPerformed
+
+    private void bRegistrarPreguntaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bRegistrarPreguntaKeyPressed
+       
+       
+    }//GEN-LAST:event_bRegistrarPreguntaKeyPressed
+
+    private void bResponderKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bResponderKeyPressed
+        /*String ch = String.valueOf(evt.getKeyChar());
+        if (ch.equals(1)) {
+             habilitar();
+            //bResponder.setEnabled(false); //Ponerlo en habilitar 
+            t5.stop();
+            segundos = 5;
+            ActualizarJLabel(0, lPrueba5);
+            t15.start();
+        }  */ 
+        
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+            //tts.getTts().cancel();
+            tts.stopSpeaking();
+            habilitar();
+            t5.stop();
+            segundos = 5;
+            ActualizarJLabel(0, lPrueba5);
+            t15.start();
+    }//GEN-LAST:event_bResponderKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

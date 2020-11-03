@@ -181,7 +181,7 @@ public class AudioPlayer extends Thread {
 	public void cancel() {
 		if (line != null) {
 			line.stop();
-		}
+		} 
 		exitRequested = true;
 	}
 	
