@@ -4,28 +4,27 @@ package archivos;
 public class Cifrado {
     
     public static int descifrar_key(String key){
+        System.out.println(key);
         int num_key=0;
-        String alfabeto_mayus="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String alfabeto_minus="abcdefghijklmnopqrstuvwxyz";
       
-        num_key=alfabeto_mayus.indexOf(key)+1;
-        
-        if (num_key == 0)  {
             num_key=alfabeto_minus.indexOf(key)+1;
-        } 
         
         return num_key;
     }
     
     public static String cifrar(String cadenaOriginal, int num_key) {
+                
 		return rotar(cadenaOriginal, num_key);
     }
 
     public static String descifrar(String cadenaCifrada, int num_key) {
-		return rotar(cadenaCifrada, -num_key);
+                //System.out.println(-(num_key));
+		return rotar(cadenaCifrada, -(num_key));
     }
 
     public static String rotar(String cadenaOriginal, int rotaciones) {
+        //System.out.println(rotaciones);
         // En ASCII, la a es 97, b 98, A 65, B 66, etcétera
         final int LONGITUD_ALFABETO = 26, INICIO_MINUSCULAS = 97, INICIO_MAYUSCULAS = 65;
         String cadenaRotada = ""; // La cadena nueva, la que estará rotada
@@ -56,6 +55,7 @@ public class Cifrado {
                 // concatenar
                 cadenaRotada += Character.toString((char) nuevaPosicionAscii);
         }
+        //System.out.println(cadenaRotada);
         return cadenaRotada;
 }
 }

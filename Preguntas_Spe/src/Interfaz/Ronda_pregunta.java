@@ -134,87 +134,73 @@ public class Ronda_pregunta extends javax.swing.JFrame {
         bStart = new javax.swing.JButton();
         lPrueba5 = new javax.swing.JLabel();
         lPrueba15 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         taRespuesta.setColumns(20);
         taRespuesta.setRows(5);
         jScrollPane1.setViewportView(taRespuesta);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 486, 149));
+
+        bResponder.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         bResponder.setText("RESPONDER");
         bResponder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bResponderActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         bResponder.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 bResponderKeyPressed(evt);
             }
         });
+=======
+        getContentPane().add(bResponder, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, 150, 40));
+>>>>>>> e613c306bdc6a2ed933a0c74fc735c0781afe17d
 
+        bRegistrarPregunta.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         bRegistrarPregunta.setText("REGISTRAR PREGUNTA");
         bRegistrarPregunta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bRegistrarPreguntaActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         bRegistrarPregunta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 bRegistrarPreguntaKeyPressed(evt);
             }
         });
+=======
+        getContentPane().add(bRegistrarPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 380, 270, 40));
+>>>>>>> e613c306bdc6a2ed933a0c74fc735c0781afe17d
 
+        bStart.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         bStart.setText("START");
         bStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bStartActionPerformed(evt);
             }
         });
+        getContentPane().add(bStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, -1, -1));
 
+        lPrueba5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lPrueba5.setForeground(new java.awt.Color(255, 255, 255));
         lPrueba5.setText("Tiene 5 segundos para presionar el botón responder");
+        getContentPane().add(lPrueba5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, 510, 18));
 
+        lPrueba15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lPrueba15.setForeground(new java.awt.Color(255, 255, 255));
         lPrueba15.setText("Tiene 15 segundos para responder");
+        getContentPane().add(lPrueba15, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 500, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(297, 297, 297)
-                        .addComponent(bRegistrarPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(bResponder, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(bStart)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(lPrueba15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lPrueba5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)))))
-                .addContainerGap(84, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addComponent(bStart)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bResponder, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(lPrueba5, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lPrueba15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addComponent(bRegistrarPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ronda_pregunta.PNG"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -298,6 +284,7 @@ public class Ronda_pregunta extends javax.swing.JFrame {
     private javax.swing.JButton bRegistrarPregunta;
     private javax.swing.JButton bResponder;
     private javax.swing.JButton bStart;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lPrueba15;
     private javax.swing.JLabel lPrueba5;
