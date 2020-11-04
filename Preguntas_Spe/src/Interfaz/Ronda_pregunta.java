@@ -28,6 +28,7 @@ public class Ronda_pregunta extends javax.swing.JFrame {
     
     public Ronda_pregunta(ArrayList<String> a, Participante p) {
         initComponents();
+        tts = new TextToSpeech();
         //this.getRootPane().setDefaultButton(bResponder); //funciona pero no interrumpe la voz, puede servir para Registrar
         bRegistrarPregunta.setEnabled(false);
         taRespuesta.setEnabled(false);
@@ -41,14 +42,14 @@ public class Ronda_pregunta extends javax.swing.JFrame {
     
     
     public void Partida(){
-        tts = new TextToSpeech(detenerVoz);
+        //tts = new TextToSpeech();
         if (contPreguntas < preguntas.size()) {
             if(tts.speak(preguntas.get(contPreguntas), 1.0f, false, false) == 1) {                
                 t5.start();
                 TInicio = System.currentTimeMillis();
-            } else {                 
+            }/* else {                 
                 JOptionPane.showMessageDialog(null, "¡Hubo un error al cargar la preguntas!");
-        }
+        }*/
 
         } else {
             //registro.archivoCifrado(respuestas); Enviarlo a la otra ventana
@@ -100,14 +101,14 @@ public class Ronda_pregunta extends javax.swing.JFrame {
         }
    };   
     
-    //Detener voz cuando se presiona el boton responder antes 
+   /* //Detener voz cuando se presiona el boton responder antes 
    @SuppressWarnings("Unchecked")
     public ActionListener detenerVoz =new ActionListener(){
          @Override
          public void actionPerformed(ActionEvent ae) {     
             tts.stopSpeaking();
         }
-   };   
+   };*/
                
    public void guardarRespuestaFrame(Participante p) {        
         Guardar_respuestas a = new Guardar_respuestas(p);
@@ -193,7 +194,6 @@ public class Ronda_pregunta extends javax.swing.JFrame {
         getContentPane().add(lPrueba15, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 500, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ronda_pregunta.PNG"))); // NOI18N
-        jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();

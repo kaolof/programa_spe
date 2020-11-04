@@ -35,7 +35,7 @@ public class TextToSpeech {
 	/**
 	 * Constructor
 	 */
-	public TextToSpeech(ActionListener e) {
+	public TextToSpeech() {
 		try {
 			marytts = new LocalMaryInterface();
 			
@@ -75,7 +75,7 @@ public class TextToSpeech {
 			tts.setDaemon(daemon);
 			tts.start();
 			if (join)
-				tts.join();                      
+			 	tts.join();                      
 			
 		} catch (SynthesisException ex) {
 			Logger.getLogger(getClass().getName()).log(Level.WARNING, "Error saying phrase.", ex);
@@ -89,6 +89,9 @@ public class TextToSpeech {
                         return 0;
 		}
                 
+                while(tts.isAlive()){
+  
+                }
                 return 1;
 	}
 	
