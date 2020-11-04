@@ -43,7 +43,7 @@ public class Ronda_pregunta extends javax.swing.JFrame {
     public void Partida(){
         tts = new TextToSpeech(detenerVoz);
         if (contPreguntas < preguntas.size()) {
-            if(tts.speak(preguntas.get(contPreguntas), 1.0f, false, true) == 1) {                
+            if(tts.speak(preguntas.get(contPreguntas), 1.0f, false, false) == 1) {                
                 t5.start();
                 TInicio = System.currentTimeMillis();
             } else {                 
@@ -152,15 +152,12 @@ public class Ronda_pregunta extends javax.swing.JFrame {
                 bResponderActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
         bResponder.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 bResponderKeyPressed(evt);
             }
         });
-=======
         getContentPane().add(bResponder, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, 150, 40));
->>>>>>> e613c306bdc6a2ed933a0c74fc735c0781afe17d
 
         bRegistrarPregunta.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         bRegistrarPregunta.setText("REGISTRAR PREGUNTA");
@@ -169,15 +166,12 @@ public class Ronda_pregunta extends javax.swing.JFrame {
                 bRegistrarPreguntaActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
         bRegistrarPregunta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 bRegistrarPreguntaKeyPressed(evt);
             }
         });
-=======
         getContentPane().add(bRegistrarPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 380, 270, 40));
->>>>>>> e613c306bdc6a2ed933a0c74fc735c0781afe17d
 
         bStart.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         bStart.setText("START");
