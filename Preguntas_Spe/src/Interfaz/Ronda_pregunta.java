@@ -23,13 +23,13 @@ public class Ronda_pregunta extends javax.swing.JFrame {
     private ManejoArchivos registro;
     //private Respuestas respuestas;
     long TInicio, TFin;
-    float tiempo;
+    float cal_tiempo;
+    String tiempo;//variable que se carga con la respuesta
         
     
     public Ronda_pregunta(ArrayList<String> a, Participante p) {
         initComponents();
         tts = new TextToSpeech();
-        //this.getRootPane().setDefaultButton(bResponder); //funciona pero no interrumpe la voz, puede servir para Registrar
         bRegistrarPregunta.setEnabled(false);
         taRespuesta.setEnabled(false);
       
@@ -47,9 +47,9 @@ public class Ronda_pregunta extends javax.swing.JFrame {
             if(tts.speak(preguntas.get(contPreguntas), 1.0f, false, false) == 1) {                
                 t5.start();
                 TInicio = System.currentTimeMillis();
-            }/* else {                 
+            } else {                 
                 JOptionPane.showMessageDialog(null, "¡Hubo un error al cargar la preguntas!");
-        }*/
+        }
 
         } else {
             //registro.archivoCifrado(respuestas); Enviarlo a la otra ventana
@@ -101,14 +101,7 @@ public class Ronda_pregunta extends javax.swing.JFrame {
         }
    };   
     
-   /* //Detener voz cuando se presiona el boton responder antes 
-   @SuppressWarnings("Unchecked")
-    public ActionListener detenerVoz =new ActionListener(){
-         @Override
-         public void actionPerformed(ActionEvent ae) {     
-            tts.stopSpeaking();
-        }
-   };*/
+  
                
    public void guardarRespuestaFrame(Participante p) {        
         Guardar_respuestas a = new Guardar_respuestas(p);
@@ -216,7 +209,12 @@ public class Ronda_pregunta extends javax.swing.JFrame {
     
     private void bResponderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bResponderActionPerformed
         habilitar();
-        //bResponder.setEnabled(false); //Ponerlo en habilitar 
+        //calcular tiempo que se tardo en presionar RESPONDER
+        TFin=System.currentTimeMillis();
+        long resta= TFin-TInicio;
+        float  calcular_tiempo= (float)resta/1000;
+        tiempo=String.format("%.3f", calcular_tiempo);
+        //parar timer 5seg
         t5.stop();
         tts.stopSpeaking();
         segundos = 5;

@@ -89,9 +89,9 @@ public class TextToSpeech {
                         return 0;
 		}
                 
-                while(tts.isAlive()){
+                /*while(tts.isAlive()){
   
-                }
+                }*/
                 return 1;
 	}
 	
@@ -122,7 +122,7 @@ public class TextToSpeech {
 		return marytts;
 	}
 	
-        public AudioPlayer getTts() {
+        public AudioPlayer getTts() {//devuelve un hilo
                 return tts;
         }
 	/**
