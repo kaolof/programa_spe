@@ -12,14 +12,15 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import preguntas_spe.Participante;
 import preguntas_spe.Respuesta;
+import java.lang.Thread;
 
 public class Ronda_pregunta extends javax.swing.JFrame {
 
     private Participante p;
     private ArrayList<String> preguntas;
-    private int minuto=10, segundos=5, segundos15=15, contPreguntas=0;
+    private int minutos_partida=10, segundos5=5, segundos15=15, contPreguntas=0,segundos_partida=0;
     TextToSpeech tts;
-    private Timer t5, t15;
+    private Timer t5, t15,t_partida;
     private ManejoArchivos registro;
     //private Respuestas respuestas;
     long TInicio, TFin;
@@ -35,21 +36,22 @@ public class Ronda_pregunta extends javax.swing.JFrame {
       
         registro = new ManejoArchivos();
         t5 = new Timer(1000,acciones);
-        t15 = new Timer(1000, acciones15);        
+        t15 = new Timer(1000, acciones15);    
+        t_partida=new Timer(1000,acciones10min);
         preguntas = a;
         this.p = p;
     }
     
     
     public void Partida(){
-        //tts = new TextToSpeech();
+        TInicio = System.currentTimeMillis();
+        cont_pregunta.setText(""+(contPreguntas+1));//actuliza la etiqueta que cuenta las preguntas
         if (contPreguntas < preguntas.size()) {
-            if(tts.speak(preguntas.get(contPreguntas), 1.0f, false, false) == 1) {                
-                t5.start();
-                TInicio = System.currentTimeMillis();
+          if(tts.speak(preguntas.get(contPreguntas), 1.0f, false, false) == 1) {
+                //verificar si todo ok 
             } else {                 
                 JOptionPane.showMessageDialog(null, "¡Hubo un error al cargar la preguntas!");
-        }
+            }
 
         } else {
             //registro.archivoCifrado(respuestas); Enviarlo a la otra ventana
@@ -61,7 +63,7 @@ public class Ronda_pregunta extends javax.swing.JFrame {
             }
             //JOptionPane.showMessageDialog(null, "¡La ronda ha terminado!");
         }
-   
+        
     }
    
     
@@ -71,12 +73,13 @@ public class Ronda_pregunta extends javax.swing.JFrame {
     public ActionListener acciones=new ActionListener(){
          @Override
          public void actionPerformed(ActionEvent ae) {       
-            segundos--;
-            ActualizarJLabel(segundos, lPrueba5);
-            if(segundos==0){
+            segundos5--;
+            lPrueba5.setText("Tiene " + segundos5 +" segundos para presionar el botón responder");
+            if(segundos5==0){
+                lPrueba5.setText("Tiene 0 segundos para presionar el botón responder");
                 t5.stop();
                 contPreguntas++;
-                segundos = 5;
+                segundos5 = 5;
                 Partida();
             }
          }
@@ -89,9 +92,9 @@ public class Ronda_pregunta extends javax.swing.JFrame {
          @Override
          public void actionPerformed(ActionEvent ae) { 
             segundos15--;
-            lPrueba15.setText("Tiene " + segundos15 +" segundos para responder");            
+            lPrueba5.setText("Tiene " + segundos15 +" segundos para responder");            
             if (segundos15 == 0) {  
-                lPrueba15.setText("Tiene: 0 segundos para responder");
+                lPrueba15.setText("Tiene 0 segundos para responder");
                 bResponder.setEnabled(false);
                 t15.stop();           
                 segundos15 = 15;
@@ -99,7 +102,37 @@ public class Ronda_pregunta extends javax.swing.JFrame {
                 Partida();
             } 
         }
-   };   
+   };  
+   
+       //TEMPORIZADOR 10 minutos
+    @SuppressWarnings("Unchecked")
+
+    public ActionListener acciones10min =new ActionListener(){
+         @Override
+         public void actionPerformed(ActionEvent ae) { 
+            
+               if(segundos_partida==0){
+                  minutos_partida--;
+                  segundos_partida=60;
+               }
+               
+               segundos_partida--;
+               ActualizarJLabel();
+               if(segundos_partida==0 & minutos_partida==0){
+                   t_partida.stop();
+                   tts.stopSpeaking();
+                   JOptionPane.showMessageDialog(null, "¡El tiempo ha terminado!");
+                   guardarRespuestaFrame(p);
+               }
+            }
+
+   };
+    //actualiza el label del temporizador de toda la partida
+    public void ActualizarJLabel(){
+        String tiempo= "0"+minutos_partida+":"+(segundos_partida<=9?"0":"")+segundos_partida;
+        Tiempo_partida.setText(tiempo);
+            
+     }
     
   
                
@@ -109,11 +142,7 @@ public class Ronda_pregunta extends javax.swing.JFrame {
         this.dispose();       
    }    
     
-    //Ponerle un formato para que sirva para todas
-    public void ActualizarJLabel(int s, JLabel jl){
-        String mensaje="Tiene " +s+ " segundos para presionar el botón responder";
-        jl.setText(mensaje);
-    }
+
 
     
 
@@ -123,12 +152,14 @@ public class Ronda_pregunta extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         taRespuesta = new javax.swing.JTextArea();
+        Tiempo_partida = new javax.swing.JLabel();
+        cont_pregunta = new javax.swing.JLabel();
         bResponder = new javax.swing.JButton();
         bRegistrarPregunta = new javax.swing.JButton();
         bStart = new javax.swing.JButton();
         lPrueba5 = new javax.swing.JLabel();
         lPrueba15 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -138,6 +169,15 @@ public class Ronda_pregunta extends javax.swing.JFrame {
         jScrollPane1.setViewportView(taRespuesta);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 486, 149));
+
+        Tiempo_partida.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Tiempo_partida.setForeground(new java.awt.Color(255, 255, 255));
+        Tiempo_partida.setText("10:00");
+        getContentPane().add(Tiempo_partida, new org.netbeans.lib.awtextra.AbsoluteConstraints(416, 32, 70, 30));
+
+        cont_pregunta.setFont(new java.awt.Font("Tahoma", 1, 40)); // NOI18N
+        cont_pregunta.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(cont_pregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 50, 40));
 
         bResponder.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         bResponder.setText("RESPONDER");
@@ -186,8 +226,10 @@ public class Ronda_pregunta extends javax.swing.JFrame {
         lPrueba15.setText("Tiene 15 segundos para responder");
         getContentPane().add(lPrueba15, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 500, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ronda_pregunta.PNG"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        fondo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        fondo.setForeground(new java.awt.Color(255, 255, 255));
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ronda_pregunta.PNG"))); // NOI18N
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -217,8 +259,8 @@ public class Ronda_pregunta extends javax.swing.JFrame {
         //parar timer 5seg
         t5.stop();
         tts.stopSpeaking();
-        segundos = 5;
-        ActualizarJLabel(0, lPrueba5);
+        lPrueba5.setText("Tiene 0 segundos para presionar el botón responder");
+        segundos5 = 5;
         t15.start();        
     }//GEN-LAST:event_bResponderActionPerformed
 
@@ -243,6 +285,7 @@ public class Ronda_pregunta extends javax.swing.JFrame {
     private void bStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bStartActionPerformed
        Partida();      
        bStart.setEnabled(false);
+       t_partida.start();
     }//GEN-LAST:event_bStartActionPerformed
 
     private void bRegistrarPreguntaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bRegistrarPreguntaKeyPressed
@@ -266,17 +309,19 @@ public class Ronda_pregunta extends javax.swing.JFrame {
             tts.stopSpeaking();
             habilitar();
             t5.stop();
-            segundos = 5;
-            ActualizarJLabel(0, lPrueba5);
+            lPrueba5.setText("Tiene 0 segundos para presionar el botón responder");
+            segundos5 = 5;
             t15.start();
     }//GEN-LAST:event_bResponderKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Tiempo_partida;
     private javax.swing.JButton bRegistrarPregunta;
     private javax.swing.JButton bResponder;
     private javax.swing.JButton bStart;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel cont_pregunta;
+    private javax.swing.JLabel fondo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lPrueba15;
     private javax.swing.JLabel lPrueba5;

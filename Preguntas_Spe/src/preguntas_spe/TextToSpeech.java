@@ -88,11 +88,7 @@ public class TextToSpeech {
 			tts.interrupt();
                         return 0;
 		}
-                
-                /*while(tts.isAlive()){
-  
-                }*/
-                return 1;
+              return 1;  
 	}
 	
 	/**
