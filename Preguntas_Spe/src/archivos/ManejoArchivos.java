@@ -57,11 +57,11 @@ public class ManejoArchivos {
        
        try {
             key = Cifrado.descifrar_key(b.readLine()); //Se lee la primera linea con b.readLine() para obtener el key
-            System.out.println("Key: "+key);
+            //System.out.println("Key: "+key);
             while((cadena = b.readLine())!= null) {  //Se comienza a leer hasta que no haya mas lineas 
                  cadenaDescifrada = Cifrado.descifrar(cadena,key); 
                  preguntas.add(cadenaDescifrada);
-                 System.out.println("Pregunta "+cadenaDescifrada);       
+                 //System.out.println("Pregunta "+cadenaDescifrada);       
             } 
            } catch (IOException | NumberFormatException e){
                 e.printStackTrace();

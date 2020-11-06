@@ -115,6 +115,7 @@ public class AudioPlayer extends Thread {
 		this.ais = AudioSystem.getAudioInputStream(audioFile);
 		this.line = line;
 		this.lineListener = lineListener;
+                
 	}
 	
 	/**
@@ -178,6 +179,7 @@ public class AudioPlayer extends Thread {
 			throw new IllegalStateException("Cannot set audio while playing");
 		}
 		this.ais = audio;
+                
 	}
 	
 	/**
@@ -188,6 +190,7 @@ public class AudioPlayer extends Thread {
 			line.stop();
 		} 
 		exitRequested = true;
+                
 	}
 
     public boolean isExitRequested() {
@@ -199,7 +202,9 @@ public class AudioPlayer extends Thread {
 	 */
 	public SourceDataLine getLine() {
 		return line;
+                
 	}
+        
 	
 	/**
 	 * Returns the GainValue

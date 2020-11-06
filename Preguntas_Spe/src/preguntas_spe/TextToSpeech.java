@@ -74,8 +74,13 @@ public class TextToSpeech {
 			tts.setDaemon(daemon);
 			tts.start();
 			if (join)
+<<<<<<< HEAD
 				tts.join(); 
                    
+=======
+			 	tts.join();                      
+			
+>>>>>>> 629bf66e5be151e30225789843b1ac589557d7eb
 		} catch (SynthesisException ex) {
 			Logger.getLogger(getClass().getName()).log(Level.WARNING, "Error saying phrase.", ex);
                         //PONER UN JPANEOPTION DE ERROR PARA EL USUARIO
@@ -86,8 +91,13 @@ public class TextToSpeech {
 			Logger.getLogger(getClass().getName()).log(Level.WARNING, "Interrupted ", ex);
                         
 		}
+<<<<<<< HEAD
             
         }
+=======
+              return 1;  
+	}
+>>>>>>> 629bf66e5be151e30225789843b1ac589557d7eb
 	
 	/**
 	 * Stop the MaryTTS from Speaking
@@ -116,7 +126,7 @@ public class TextToSpeech {
 		return marytts;
 	}
 	
-        public AudioPlayer getTts() {
+        public AudioPlayer getTts() {//devuelve un hilo
                 return tts;
         }
 	/**
