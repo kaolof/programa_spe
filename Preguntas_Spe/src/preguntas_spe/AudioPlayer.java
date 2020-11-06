@@ -32,10 +32,14 @@ public class AudioPlayer extends Thread {
 	public static final int RIGHT_ONLY = 2;
 	private AudioInputStream ais;
 	private LineListener lineListener;
-	private SourceDataLine line;
+	private SourceDataLine line; 
 	private int outputMode;
 	
 	private Status status = Status.WAITING;
+
+    public Status getStatus() {
+        return status;
+    }
 	private boolean exitRequested = false;
 	private float gain = 1.0f;
 	
@@ -61,6 +65,7 @@ public class AudioPlayer extends Thread {
 	 *
 	 */
 	public AudioPlayer() {
+           
 	}
 	
 	/**
@@ -184,6 +189,10 @@ public class AudioPlayer extends Thread {
 		} 
 		exitRequested = true;
 	}
+
+    public boolean isExitRequested() {
+        return exitRequested;
+    }
 	
 	/**
 	 * @return The SourceDataLine
@@ -270,12 +279,12 @@ public class AudioPlayer extends Thread {
 			return;
 		}
 		
-		line.start();
+		line.start();               
 		setGain(getGainValue());
 		
 		int nRead = 0;
 		byte[] abData = new byte[65532];
-		while ( ( nRead != -1 ) && ( !exitRequested )) {
+		while ( ( nRead != -1 ) && ( !exitRequested )) { //Si nRead es = a -1 significa que la linea termino de leerse
 			try {
 				nRead = ais.read(abData, 0, abData.length);
 			} catch (IOException ex) {
@@ -283,12 +292,17 @@ public class AudioPlayer extends Thread {
 			}
 			if (nRead >= 0) {
 				line.write(abData, 0, nRead);
+                              
 			}
 		}
 		if (!exitRequested) {
 			line.drain();
 		}
 		line.close();
-	}
+	} 
+        
+    
+        
+        
 	
 }

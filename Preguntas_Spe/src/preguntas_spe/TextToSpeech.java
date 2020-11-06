@@ -20,6 +20,7 @@ import marytts.signalproc.effects.AudioEffect;
 import marytts.signalproc.effects.AudioEffects;
 
 
+
 /**
  * @author GOXR3PLUS
  *
@@ -27,15 +28,13 @@ import marytts.signalproc.effects.AudioEffects;
 public class TextToSpeech {
 	
 	private AudioPlayer tts;
-        //private AudioStream audio;
-
-   
+          
 	private MaryInterface marytts;
 	
 	/**
 	 * Constructor
 	 */
-	public TextToSpeech(ActionListener e) {
+	public TextToSpeech() {
 		try {
 			marytts = new LocalMaryInterface();
 			
@@ -60,7 +59,7 @@ public class TextToSpeech {
 	 *            <b>True</b> The current Thread calling this method will wait(blocked) until the Thread which is playing the Speech finish <br>
 	 *            <b>False</b> The current Thread calling this method will continue freely after calling this method
 	 */
-	public int speak(String text , float gainValue , boolean daemon , boolean join) { //Mandarle el action listener de boton
+	public void speak(String text , float gainValue , boolean daemon , boolean join) { 
 		
 		// Stop the previous player
 		stopSpeaking();
@@ -75,22 +74,20 @@ public class TextToSpeech {
 			tts.setDaemon(daemon);
 			tts.start();
 			if (join)
-				tts.join();                      
-			
+				tts.join(); 
+                   
 		} catch (SynthesisException ex) {
 			Logger.getLogger(getClass().getName()).log(Level.WARNING, "Error saying phrase.", ex);
-                        return 0;
+                        //PONER UN JPANEOPTION DE ERROR PARA EL USUARIO
 		} catch (IOException ex) {
 			Logger.getLogger(getClass().getName()).log(Level.WARNING, "IO Exception", ex);
-                        return 0;
+                       
 		} catch (InterruptedException ex) {
 			Logger.getLogger(getClass().getName()).log(Level.WARNING, "Interrupted ", ex);
-			tts.interrupt();
-                        return 0;
+                        
 		}
-                
-                return 1;
-	}
+            
+        }
 	
 	/**
 	 * Stop the MaryTTS from Speaking
