@@ -74,13 +74,13 @@ public class TextToSpeech {
 			tts.setDaemon(daemon);
 			tts.start();
 			if (join)
-<<<<<<< HEAD
+
 				tts.join(); 
                    
-=======
+
 			 	tts.join();                      
 			
->>>>>>> 629bf66e5be151e30225789843b1ac589557d7eb
+
 		} catch (SynthesisException ex) {
 			Logger.getLogger(getClass().getName()).log(Level.WARNING, "Error saying phrase.", ex);
                         //PONER UN JPANEOPTION DE ERROR PARA EL USUARIO
@@ -91,26 +91,18 @@ public class TextToSpeech {
 			Logger.getLogger(getClass().getName()).log(Level.WARNING, "Interrupted ", ex);
                         
 		}
-<<<<<<< HEAD
+
             
         }
 
-    public Object getTts() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-=======
-              return 1;  
-	}
->>>>>>> 629bf66e5be151e30225789843b1ac589557d7eb
-	
 	/**
 	 * Stop the MaryTTS from Speaking
 	 */
-	public void stopSpeaking() {
-		// Stop the previous player
-		if (tts != null)
-			tts.cancel();
-        }
+    public void stopSpeaking() {
+            // Stop the previous player
+            if (tts != null)
+                    tts.cancel();
+    }
 	
 	//----------------------GETTERS---------------------------------------------------//
 	

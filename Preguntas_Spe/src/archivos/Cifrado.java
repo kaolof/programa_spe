@@ -4,7 +4,6 @@ package archivos;
 public class Cifrado {
     
     public static int descifrar_key(String key){
-        System.out.println(key);
         int num_key=0;
         String alfabeto_minus="abcdefghijklmnopqrstuvwxyz";
       

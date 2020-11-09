@@ -19,8 +19,8 @@ public class ManejoArchivos {
     private static int key;
     
     //Para escribir en el archivo
-    public void escribirArchivo(String a) {
-        archivo = new File("respuestas.txt");
+    public void escribirArchivo(String a, String ruta) {
+        archivo = new File(ruta);
         if (!archivo.exists()) {
             try {
                 archivo.createNewFile();                              
@@ -72,14 +72,14 @@ public class ManejoArchivos {
    } 
     
     //Para cifrar el arreglo de respuestas y generar el archivo mandarle el participante
-    public void archivoCifrado(Respuestas r) { 
+    public void archivoCifrado(Respuestas r,String ruta) { 
         int respuestasSize = r.getRespuestas().size(), i = 0;
         String cadena, cadenaCifrada; 
         
         while (i < respuestasSize) {
             cadena = r.getRespuestas().get(i).toString();
             cadenaCifrada = Cifrado.cifrar(cadena,key);
-            escribirArchivo(cadenaCifrada); 
+            escribirArchivo(cadenaCifrada,ruta); 
             i++;
         }    
        

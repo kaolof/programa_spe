@@ -4,9 +4,9 @@ package preguntas_spe;
 public class Respuesta {
     
     private String contenido;
-    private int segundos;
+    private float segundos;
     
-   public Respuesta(String c, int s){ 
+   public Respuesta(String c, float s){ 
        this.contenido=c;
        this.segundos=s;
    }    
@@ -15,12 +15,12 @@ public class Respuesta {
         return contenido;
     }
 
-    public int getSegundos() {
+    public float getSegundos() {
         return segundos;
     }
 
     @Override
     public String toString() {
-        return contenido +" "+ segundos;
+        return contenido+": "+ segundos;
     }
 }

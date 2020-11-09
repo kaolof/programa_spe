@@ -13,10 +13,6 @@ import preguntas_spe.Participante;
  */
 public class Guardar_respuestas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Guardar_respuestas
-     */
-    
     private Participante p;
     private ManejoArchivos respuestas;
     
@@ -31,32 +27,22 @@ public class Guardar_respuestas extends javax.swing.JFrame {
     private void initComponents() {
 
         Guardar_respuestas = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Guardar_respuestas.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Guardar_respuestas.setText("Guardar respuestas");
         Guardar_respuestas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Guardar_respuestasActionPerformed(evt);
             }
         });
+        getContentPane().add(Guardar_respuestas, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 380, 220, 38));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(Guardar_respuestas, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(121, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(205, Short.MAX_VALUE)
-                .addComponent(Guardar_respuestas, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Guardar_respuestas.PNG"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -76,8 +62,8 @@ public class Guardar_respuestas extends javax.swing.JFrame {
             File fichero=fc.getSelectedFile();
 
             try(FileWriter fw=new FileWriter(fichero)){
-
-               respuestas.archivoCifrado(p.getRespuestasP());
+                fichero.getAbsolutePath();
+               respuestas.archivoCifrado(p.getRespuestasP(),fichero.getAbsolutePath());
 
 
             } catch (IOException e1) {
@@ -90,5 +76,6 @@ public class Guardar_respuestas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Guardar_respuestas;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

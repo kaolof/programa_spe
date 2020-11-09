@@ -18,7 +18,8 @@ public class DatosParticipante extends javax.swing.JFrame {
     ArrayList <String> preguntas;
 
     public DatosParticipante() {
-        initComponents();      
+        initComponents(); 
+        jbComenzar.setEnabled(false);
     }
 
   
@@ -94,6 +95,7 @@ public class DatosParticipante extends javax.swing.JFrame {
         File archivo= jf.getSelectedFile();
         if(archivo != null){
             ruta_archivo=archivo.getAbsolutePath();
+            Cargar_preguntas.setEnabled(false);
         }
         try {
             preguntas = ManejoArchivos.leerArchivo(ruta_archivo); 
@@ -102,6 +104,7 @@ public class DatosParticipante extends javax.swing.JFrame {
             Logger.getLogger(DatosParticipante.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        jbComenzar.setEnabled(true);
     }//GEN-LAST:event_Cargar_preguntasActionPerformed
 
     private void validar(JTextField tf) {
