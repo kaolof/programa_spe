@@ -7,7 +7,7 @@ public class Cifrado {
         int num_key=0;
         String alfabeto_minus="abcdefghijklmnopqrstuvwxyz";
       
-            num_key=alfabeto_minus.indexOf(key)+1;
+            num_key=alfabeto_minus.indexOf(key);
         
         return num_key;
     }

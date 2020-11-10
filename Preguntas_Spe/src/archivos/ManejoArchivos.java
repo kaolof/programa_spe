@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import preguntas_spe.Participante;
-import preguntas_spe.Respuestas;
 
 
 public class ManejoArchivos {

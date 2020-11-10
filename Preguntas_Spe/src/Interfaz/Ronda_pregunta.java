@@ -1,7 +1,6 @@
 
 package Interfaz;
 
-import archivos.ManejoArchivos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -9,7 +8,6 @@ import javax.swing.Timer;
 import preguntas_spe.TextToSpeech;
 import com.sun.glass.events.KeyEvent;
 import java.util.ArrayList;
-import javax.swing.JLabel;
 import preguntas_spe.Participante;
 import preguntas_spe.Respuesta;
 import javax.swing.SwingWorker;
@@ -80,10 +78,8 @@ public class Ronda_pregunta extends javax.swing.JFrame {
         worker.execute();
      
         } else {
-            int op = JOptionPane.showConfirmDialog(null, "¡La ronda ha terminado!"); //CAMBIARLO A SHOWOPTION
-            if (op == 0) {
-                guardarRespuestaFrame(p);
-            }
+            JOptionPane.showMessageDialog(null, "¡La ronda ha terminado!");
+            guardarRespuestaFrame(p);           
         }
     }
     
