@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import preguntas_spe.Participante;
 
 /**
@@ -51,30 +52,19 @@ public class Guardar_respuestas extends javax.swing.JFrame {
 
     //REVISAR OPCIONES DEL MÉTODO
     private void Guardar_respuestasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guardar_respuestasActionPerformed
-        respuestas.archivoCifrado(p);             
-        /*//Creamos el objeto JFileChooser
-        JFileChooser fc=new JFileChooser();
+                 
+        
+        JFileChooser fc=new JFileChooser();        
  
-        //Abrimos la ventana, guardamos la opcion seleccionada por el usuario
-        int seleccion=fc.showSaveDialog(this);
+        fc.showSaveDialog(null);
+        fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
-        //Si el usuario, pincha en aceptar
-        if(seleccion==JFileChooser.APPROVE_OPTION){
-
-            //Seleccionamos el fichero
-            File fichero=fc.getSelectedFile();
-
-            try(FileWriter fw = new FileWriter(fichero)){
-                fichero.getAbsolutePath();
-                //respuestas.archivoCifrado(p,fichero.getAbsolutePath());
-                respuestas.archivoCifrado(p);
-                
-
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-
-        }*/
+        File archivo = fc.getSelectedFile();
+        respuestas.archivoCifrado(p, archivo);
+        
+        JOptionPane.showMessageDialog(null, "¡Gracias por participar!");
+        System.exit(0);
+        
     }//GEN-LAST:event_Guardar_respuestasActionPerformed
 
 

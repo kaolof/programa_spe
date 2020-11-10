@@ -19,11 +19,11 @@ public class ManejoArchivos {
     private static int key;
     private static String clave;
     
-    //Para escribir en el archivo
-    //public void escribirArchivo(String a, String ruta) 
-    public void escribirArchivo(String a) {
-        //archivo = new File(ruta);
-        archivo = new File("Respuestas.txt");
+    
+    //Para escribir en el archivo    
+    public void escribirArchivo(String a, File archivo) {
+        
+        
         if (!archivo.exists()) {
             try {
                 archivo.createNewFile();                              
@@ -31,7 +31,7 @@ public class ManejoArchivos {
                 linea = new PrintWriter(escribir);             
                 linea.println(a);
                 linea.close();
-                escribir.close();
+                escribir.close();                
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -74,18 +74,17 @@ public class ManejoArchivos {
         return preguntas;         
    } 
     
-    //Para cifrar el arreglo de respuestas y generar el archivo mandarle el participante
-    //public void archivoCifrado(Participante p, String ruta) { 
-    public void archivoCifrado(Participante p) { 
+    //Para cifrar el arreglo de respuestas y generar el archivo mandarle el participante     
+    public void archivoCifrado(Participante p, File nombreArchivo) { 
         
         int respuestasSize = p.getRespuestasP().getRespuestas().size(), i = 0;      
         
         //SE ESCRIBE EL KEY        
-        escribirArchivo(clave);        
+        escribirArchivo(clave, nombreArchivo);        
         
         //SE ESCRIBE EL PARTICIPANTE 
         String datos = Cifrado.cifrar (p.getDatos(), key);
-        escribirArchivo(datos);      
+        escribirArchivo(datos, nombreArchivo);      
                
         //SE REGISTRAN LAS PREGUNTAS
         String cadena, cadenaCifrada;      
@@ -93,7 +92,7 @@ public class ManejoArchivos {
         while (i < respuestasSize) {
             cadena = p.getRespuestasP().getRespuestas().get(i).toString();            
             cadenaCifrada = Cifrado.cifrar(cadena,key);           
-            escribirArchivo(cadenaCifrada); 
+            escribirArchivo(cadenaCifrada, nombreArchivo); 
             i++;
         }    
        
