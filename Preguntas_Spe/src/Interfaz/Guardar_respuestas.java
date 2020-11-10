@@ -18,7 +18,9 @@ public class Guardar_respuestas extends javax.swing.JFrame {
     
     public Guardar_respuestas(Participante p) {
         initComponents();
+        respuestas = new ManejoArchivos();
         this.p = p;
+        
     }
 
     
@@ -49,7 +51,8 @@ public class Guardar_respuestas extends javax.swing.JFrame {
 
     //REVISAR OPCIONES DEL MÉTODO
     private void Guardar_respuestasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guardar_respuestasActionPerformed
-        //Creamos el objeto JFileChooser
+        respuestas.archivoCifrado(p);             
+        /*//Creamos el objeto JFileChooser
         JFileChooser fc=new JFileChooser();
  
         //Abrimos la ventana, guardamos la opcion seleccionada por el usuario
@@ -61,16 +64,17 @@ public class Guardar_respuestas extends javax.swing.JFrame {
             //Seleccionamos el fichero
             File fichero=fc.getSelectedFile();
 
-            try(FileWriter fw=new FileWriter(fichero)){
+            try(FileWriter fw = new FileWriter(fichero)){
                 fichero.getAbsolutePath();
-               respuestas.archivoCifrado(p.getRespuestasP(),fichero.getAbsolutePath());
-
+                //respuestas.archivoCifrado(p,fichero.getAbsolutePath());
+                respuestas.archivoCifrado(p);
+                
 
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
 
-        }
+        }*/
     }//GEN-LAST:event_Guardar_respuestasActionPerformed
 
 

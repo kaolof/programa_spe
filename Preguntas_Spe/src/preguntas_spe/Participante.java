@@ -31,6 +31,10 @@ public class Participante {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
+    
+    public String getDatos() {
+        return nombre +" "+ apellido;
+    }
 
     //Revisar si necesito tenerlo dos veces
     public Respuestas getRespuestasP () {

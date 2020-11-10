@@ -14,8 +14,9 @@ import preguntas_spe.Participante;
 public class DatosParticipante extends javax.swing.JFrame {
     
     private Participante p;
-    String ruta_archivo;
-    ArrayList <String> preguntas;
+    private String ruta_archivo;
+    private ArrayList <String> preguntas;
+   
 
     public DatosParticipante() {
         initComponents(); 

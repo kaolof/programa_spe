@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import preguntas_spe.Participante;
 import preguntas_spe.Respuestas;
 
 
@@ -17,16 +18,19 @@ public class ManejoArchivos {
     private FileWriter escribir;
     private PrintWriter linea;
     private static int key;
+    private static String clave;
     
     //Para escribir en el archivo
-    public void escribirArchivo(String a, String ruta) {
-        archivo = new File(ruta);
+    //public void escribirArchivo(String a, String ruta) 
+    public void escribirArchivo(String a) {
+        //archivo = new File(ruta);
+        archivo = new File("Respuestas.txt");
         if (!archivo.exists()) {
             try {
                 archivo.createNewFile();                              
                 escribir = new FileWriter(archivo, true);
-                linea = new PrintWriter(escribir);
-                linea.print(a);
+                linea = new PrintWriter(escribir);             
+                linea.println(a);
                 linea.close();
                 escribir.close();
             } catch (IOException e) {
@@ -36,8 +40,8 @@ public class ManejoArchivos {
         } else {
             try {                               
                 escribir = new FileWriter(archivo, true);
-                linea = new PrintWriter(escribir);
-                linea.print(a);
+                linea = new PrintWriter(escribir);                
+                linea.println(a);                
                 linea.close();
                 escribir.close();
             } catch (IOException e) {
@@ -56,48 +60,45 @@ public class ManejoArchivos {
        BufferedReader b = new BufferedReader(f); // Se hace un buffer para leer linea por linea
        
        try {
-            key = Cifrado.descifrar_key(b.readLine()); //Se lee la primera linea con b.readLine() para obtener el key
-            //System.out.println("Key: "+key);
-            while((cadena = b.readLine())!= null) {  //Se comienza a leer hasta que no haya mas lineas 
+            clave = b.readLine();
+            key = Cifrado.descifrar_key(clave); //Se lee la primera linea con b.readLine() para obtener el key
+            
+            while((cadena = b.readLine())!= null) {
                  cadenaDescifrada = Cifrado.descifrar(cadena,key); 
-                 preguntas.add(cadenaDescifrada);
-                 //System.out.println("Pregunta "+cadenaDescifrada);       
+                 preguntas.add(cadenaDescifrada);                      
             } 
            } catch (IOException | NumberFormatException e){
                 e.printStackTrace();
             } 
 
-        f.close(); //Se cierra el archivo
+        f.close();
         return preguntas;         
    } 
     
     //Para cifrar el arreglo de respuestas y generar el archivo mandarle el participante
-    public void archivoCifrado(Respuestas r,String ruta) { 
-        int respuestasSize = r.getRespuestas().size(), i = 0;
-        String cadena, cadenaCifrada; 
+    //public void archivoCifrado(Participante p, String ruta) { 
+    public void archivoCifrado(Participante p) { 
+        
+        int respuestasSize = p.getRespuestasP().getRespuestas().size(), i = 0;      
+        
+        //SE ESCRIBE EL KEY        
+        escribirArchivo(clave);        
+        
+        //SE ESCRIBE EL PARTICIPANTE 
+        String datos = Cifrado.cifrar (p.getDatos(), key);
+        escribirArchivo(datos);      
+               
+        //SE REGISTRAN LAS PREGUNTAS
+        String cadena, cadenaCifrada;      
         
         while (i < respuestasSize) {
-            cadena = r.getRespuestas().get(i).toString();
-            cadenaCifrada = Cifrado.cifrar(cadena,key);
-            escribirArchivo(cadenaCifrada,ruta); 
-            i++;
-        }    
-       
-    }
-    
-     /*Para cifrar el arreglo de respuestas y generar el archivo
-    public void archivoCifrado(ArrayList<Respuestas> r) {  
-        int respuestasSize = r.size(), i = 0;
-        String cadena, cadenaCifrada;
-        
-        while (i < respuestasSize) {
-            cadena = r.get(i);
-            cadenaCifrada = Cifrado.cifrar(cadena, key);
+            cadena = p.getRespuestasP().getRespuestas().get(i).toString();            
+            cadenaCifrada = Cifrado.cifrar(cadena,key);           
             escribirArchivo(cadenaCifrada); 
             i++;
         }    
        
-    }*/
+    }
         
 }
 

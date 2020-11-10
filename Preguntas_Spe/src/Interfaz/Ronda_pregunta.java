@@ -28,27 +28,27 @@ public class Ronda_pregunta extends javax.swing.JFrame {
     private Participante p;
     private ArrayList<String> preguntas;
     private int minutos_partida=10, segundos5=5, segundos15=15, contPreguntas=0, segundos_partida=0;
-    TextToSpeech tts;
+    private TextToSpeech tts;
     private Timer t5, t15,t_partida;
-    long TInicio, TFin, espera;
-    float cal_tiempo;
-    String tiempo;//variable que se carga con la respuesta
-    private ManejoArchivos registro;
-    private boolean estado, estado_partida=true;//mira lo siento pero yo no puedo contenerme de llamar a las variables de otra manera AJJAJAJ 
+    private long tInicio, tFin;
+    private String tiempoRespuesta;
+    private boolean estado, estado_partida=true;
     
   
         
     
     public Ronda_pregunta(ArrayList<String> a, Participante p) {
         initComponents();
-        espera = 5000;
+       
         bRegistrarPregunta.setEnabled(false);
         taRespuesta.setEnabled(false); 
         bResponder.setEnabled(false);
+        
         tts = new TextToSpeech();
         t5 = new Timer(1000,acciones);
         t15 = new Timer(1000, acciones15); 
         t_partida=new Timer(1000,acciones10min);
+        
         preguntas = a;
         this.p = p;
   
@@ -59,7 +59,7 @@ public class Ronda_pregunta extends javax.swing.JFrame {
         bResponder.requestFocus();
         if (contPreguntas < preguntas.size()&& estado_partida==true) {
             cont_pregunta.setText(""+(contPreguntas+1));
-           
+            tInicio = System.currentTimeMillis();
             final SwingWorker worker = new SwingWorker() {
             @Override  //METODO PARA QUE SE EJECUTE EN SEGUNDO PLANO Y NO BLOQUEE LA INTERFAZ
             protected Object doInBackground() throws Exception {            
@@ -96,6 +96,12 @@ public class Ronda_pregunta extends javax.swing.JFrame {
             segundos5--;
             lPrueba5.setText("Tiene " + segundos5 +" segundos para presionar el botón responder");
             if(segundos5==0){
+                if (estado == false) {
+                    Respuesta respuesta;
+                    String s = " "; //VALIDAR SI ESTA VACIO
+                    respuesta = new Respuesta(s, s);
+                    p.getRespuestasP().getRespuestas().add(respuesta);
+                }                
                 lPrueba5.setText("Tiene 0 segundos para presionar el botón responder");
                 t5.stop();
                 contPreguntas++;
@@ -271,11 +277,15 @@ public class Ronda_pregunta extends javax.swing.JFrame {
 
     /*----------------METODOS DE LOS EVENTOS Y AP---------------------**/
     
-    //Metodo que se ejecuta cuando se presiona el botÃ³n responder o la tecla arriba 
+    //Metodo que se ejecuta cuando se presiona el boton responder o la tecla arriba 
     private void responder() { 
         habilitar();
         taRespuesta.requestFocus();
         bResponder.setEnabled(false);
+        tFin = System.currentTimeMillis();
+        long resta = tFin - tInicio;
+        float calcularTiempo = (float) resta / 1000;
+        tiempoRespuesta = String.format("%.3f",calcularTiempo);        
         t5.stop();
         tts.stopSpeaking();
         lPrueba5.setText("Tiene   segundos para presionar el botón responder");
@@ -288,9 +298,8 @@ public class Ronda_pregunta extends javax.swing.JFrame {
     private void registrar() {
         Respuesta respuesta;
         String s = taRespuesta.getText(); //VALIDAR SI ESTA VACÃ�O
-        int tiempoRespuesta = 0;
         respuesta = new Respuesta(s, tiempoRespuesta);
-        p.getRespuestasP().agregarRespuesta(respuesta);
+        p.getRespuestasP().getRespuestas().add(respuesta);//Revisar
         taRespuesta.setText(" ");
         deshabilitar();
         t15.stop();

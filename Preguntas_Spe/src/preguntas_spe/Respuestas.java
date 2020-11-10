@@ -11,9 +11,9 @@ public class Respuestas {
         respuestas = new ArrayList<>(); 
     }
 
-    public void agregarRespuesta(Respuesta r) {
+    /*public void agregarRespuesta(Respuesta r) {
         respuestas.add(r);       
-    }
+    }*/
 
 
     private void listarRespuestas() {       
