@@ -120,7 +120,10 @@ public class Ronda_pregunta extends javax.swing.JFrame {
                 bResponder.setEnabled(false);
                 t15.stop();           
                 segundos15 = 15;
+                segundos5=5;
                 contPreguntas++;
+                estado=false;
+                bResponder.setEnabled(true);
                 Partida();
             } 
         }
@@ -144,8 +147,7 @@ public class Ronda_pregunta extends javax.swing.JFrame {
                    estado_partida=false;//para que mary no siga hablando cuando acabe la partida
                    t_partida.stop();
                    tts.stopSpeaking();
-                   JOptionPane.showMessageDialog(null, "¡El tiempo ha terminado!");
-                   guardarRespuestaFrame(p);
+                   
                }
             }
 
@@ -200,10 +202,9 @@ public class Ronda_pregunta extends javax.swing.JFrame {
         Tiempo_partida.setText("10:00");
         getContentPane().add(Tiempo_partida, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 70, 30));
 
-        cont_pregunta.setFont(new java.awt.Font("Tahoma", 1, 41)); // NOI18N
+        cont_pregunta.setFont(new java.awt.Font("Tahoma", 1, 40)); // NOI18N
         cont_pregunta.setForeground(new java.awt.Color(255, 255, 255));
-        cont_pregunta.setText("0");
-        getContentPane().add(cont_pregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 50, 40));
+        getContentPane().add(cont_pregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, 60, 40));
 
         bResponder.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         bResponder.setText("RESPONDER");

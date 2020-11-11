@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import preguntas_spe.Participante;
 
 /**
@@ -54,7 +55,11 @@ public class Guardar_respuestas extends javax.swing.JFrame {
     private void Guardar_respuestasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guardar_respuestasActionPerformed
                  
         
-        JFileChooser fc=new JFileChooser();        
+        JFileChooser fc=new JFileChooser(); 
+        //creamos el filtro
+        FileNameExtensionFilter filtro= new FileNameExtensionFilter("*.DAT","dat");
+        //indicamos el filtro
+        fc.setFileFilter(filtro);
  
         fc.showSaveDialog(null);
         fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);

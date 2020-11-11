@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import preguntas_spe.Participante;
 
 public class DatosParticipante extends javax.swing.JFrame {
@@ -92,6 +93,10 @@ public class DatosParticipante extends javax.swing.JFrame {
 //Añadir validacion de que no puede iniciar sin cargar las preguntas 
     private void Cargar_preguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cargar_preguntasActionPerformed
         JFileChooser jf= new JFileChooser();
+        //creamos el filtro
+        FileNameExtensionFilter filtro= new FileNameExtensionFilter("*.DAT","dat");
+        //indicamos el filtro
+        jf.setFileFilter(filtro);
         jf.showOpenDialog(this);
         File archivo= jf.getSelectedFile();
         if(archivo != null){
