@@ -16,6 +16,7 @@ public class AcercaDe extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jbRegresar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -28,7 +29,6 @@ public class AcercaDe extends javax.swing.JFrame {
         getContentPane().add(jbRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/acerca_de.PNG"))); // NOI18N
-        jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();

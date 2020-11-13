@@ -4,6 +4,7 @@ public class Bienvenidos extends javax.swing.JFrame {
 
     public Bienvenidos() {
         initComponents();
+        this.setResizable(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -15,6 +16,7 @@ public class Bienvenidos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jbRegistrarme.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -45,6 +47,7 @@ public class Bienvenidos extends javax.swing.JFrame {
        DatosParticipante a = new DatosParticipante();
        a.setVisible(true);
        this.dispose();
+       
     }//GEN-LAST:event_jbRegistrarmeActionPerformed
 
     private void jbAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAcercaDeActionPerformed

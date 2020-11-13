@@ -38,6 +38,7 @@ public class DatosParticipante extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jbComenzar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
